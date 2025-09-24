@@ -1,118 +1,118 @@
 # Cuicocha VR Experience
 
-Un proyecto de realidad virtual desarrollado en Unity utilizando Google Cardboard para crear una experiencia inmersiva.
+A virtual reality project developed in Unity using Google Cardboard to create an immersive experience.
 
-## 📱 Descripción
+## 📱 Description
 
-Este proyecto implementa una experiencia de realidad virtual utilizando Google Cardboard, permitiendo a los usuarios explorar contenido 3D a través de dispositivos móviles con soporte VR.
+This project implements a virtual reality experience using Google Cardboard, allowing users to explore 3D content through mobile devices with VR support.
 
-## 🚀 Características
+## 🚀 Features
 
-- **Compatibilidad con Google Cardboard**: Optimizado para dispositivos móviles con soporte VR
-- **Experiencia inmersiva**: Contenido 3D interactivo
-- **Adaptive Performance**: Optimización automática del rendimiento según el dispositivo
-- **XR Support**: Soporte completo para experiencias de realidad extendida
-- **Multiplataforma**: Compatible con Android e iOS
+- **Google Cardboard Compatibility**: Optimized for mobile devices with VR support
+- **Immersive Experience**: Interactive 3D content
+- **Adaptive Performance**: Automatic performance optimization based on device capabilities
+- **XR Support**: Full support for extended reality experiences
+- **Cross-Platform**: Compatible with Android and iOS
 
-## 🛠️ Tecnologías Utilizadas
+## 🛠️ Technologies Used
 
-- **Unity Engine**: Motor de desarrollo principal
-- **Google Cardboard SDK**: Para funcionalidades VR
-- **C#**: Lenguaje de programación
-- **Android Gradle**: Para builds de Android
-- **XR Plugin Management**: Gestión de plugins de realidad extendida
+- **Unity Engine**: Main development engine
+- **Google Cardboard SDK**: For VR functionality
+- **C#**: Programming language
+- **Android Gradle**: For Android builds
+- **XR Plugin Management**: Extended reality plugin management
 
-## 📋 Requisitos del Sistema
+## 📋 System Requirements
 
-### Para Desarrollo
-- Unity 2022.3 o superior
-- Visual Studio o Visual Studio Code
-- Android SDK (para builds de Android)
+### For Development
+- Unity 2022.3 or higher
+- Visual Studio or Visual Studio Code
+- Android SDK (for Android builds)
 - Git
 
-### Para Usuarios Finales
-- Dispositivo móvil Android/iOS
-- Google Cardboard o visor VR compatible
-- Sistema operativo Android 7.0+ o iOS 11.0+
+### For End Users
+- Android/iOS mobile device
+- Google Cardboard or compatible VR viewer
+- Android 7.0+ or iOS 11.0+ operating system
 
-## 🚀 Instalación y Configuración
+## 🚀 Installation and Setup
 
-### Clonar el Repositorio
+### Clone the Repository
 ```bash
-git clone https://github.com/tu-usuario/cuicocha.git
-cd cuicocha
+git clone https://github.com/alanjosue1998/cuicocha-vr.git
+cd cuicocha-vr
 ```
 
-### Configurar Unity
-1. Abre Unity Hub
-2. Haz clic en "Add" y selecciona la carpeta del proyecto
-3. Asegúrate de tener Unity 2022.3 o superior instalado
-4. Abre el proyecto en Unity
+### Configure Unity
+1. Open Unity Hub
+2. Click "Add" and select the project folder
+3. Make sure you have Unity 2022.3 or higher installed
+4. Open the project in Unity
 
-### Configurar para Android
-1. Ve a `File > Build Settings`
-2. Selecciona "Android" como plataforma
-3. Haz clic en "Switch Platform"
-4. Configura las opciones de Player Settings según tus necesidades
+### Configure for Android
+1. Go to `File > Build Settings`
+2. Select "Android" as platform
+3. Click "Switch Platform"
+4. Configure Player Settings according to your needs
 
-## 🎮 Uso
+## 🎮 Usage
 
-1. Compila el proyecto para tu dispositivo móvil
-2. Instala la aplicación en tu dispositivo
-3. Coloca el dispositivo en tu visor Google Cardboard
-4. ¡Disfruta de la experiencia VR!
+1. Build the project for your mobile device
+2. Install the application on your device
+3. Place the device in your Google Cardboard viewer
+4. Enjoy the VR experience!
 
-## 📁 Estructura del Proyecto
+## 📁 Project Structure
 
 ```
-cuicocha/
+cuicocha-vr/
 ├── Assets/
-│   ├── Adaptive Performance/     # Configuraciones de rendimiento adaptativo
-│   ├── Editor/                   # Scripts del editor
+│   ├── Adaptive Performance/     # Adaptive performance configurations
+│   ├── Editor/                   # Editor scripts
 │   ├── Plugins/
-│   │   └── Android/             # Configuraciones específicas de Android
-│   ├── Samples/                 # Contenido de ejemplo
-│   ├── Scenes/                  # Escenas del juego
-│   ├── TutorialInfo/            # Información de tutoriales
-│   └── XR/                      # Configuraciones de realidad extendida
-├── ProjectSettings/             # Configuraciones del proyecto
-├── Packages/                    # Paquetes de Unity
-└── README.md                    # Este archivo
+│   │   └── Android/             # Android-specific configurations
+│   ├── Samples/                 # Sample content
+│   ├── Scenes/                  # Game scenes
+│   ├── TutorialInfo/            # Tutorial information
+│   └── XR/                      # Extended reality configurations
+├── ProjectSettings/             # Project configurations
+├── Packages/                    # Unity packages
+└── README.md                    # This file
 ```
 
-## 🔧 Configuración Avanzada
+## 🔧 Advanced Configuration
 
-### Configuración de Gradle (Android)
-El proyecto incluye configuraciones personalizadas de Gradle en `Assets/Plugins/Android/mainTemplate.gradle` para optimizar el build de Android.
+### Gradle Configuration (Android)
+The project includes custom Gradle configurations in `Assets/Plugins/Android/mainTemplate.gradle` to optimize Android builds.
 
-### Configuración XR
-Las configuraciones de realidad extendida se encuentran en `Assets/XR/` y permiten personalizar la experiencia VR según tus necesidades.
+### XR Configuration
+Extended reality configurations are located in `Assets/XR/` and allow you to customize the VR experience according to your needs.
 
-## 🤝 Contribuir
+## 🤝 Contributing
 
-1. Fork el proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
+1. Fork the project
+2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
 
-## 📄 Licencia
+## 📄 License
 
-Este proyecto está bajo la Licencia MIT. Ver el archivo `LICENSE` para más detalles.
+This project is licensed under the MIT License. See the `LICENSE` file for more details.
 
-## 📞 Contacto
+## 📞 Contact
 
-Si tienes preguntas o sugerencias sobre este proyecto, no dudes en contactarme:
+If you have questions or suggestions about this project, feel free to contact me:
 
-- **GitHub**: [tu-usuario](https://github.com/tu-usuario)
-- **Email**: tu-email@ejemplo.com
+- **GitHub**: [alanjosue1998](https://github.com/alanjosue1998)
+- **Email**: alanjosue1998@example.com
 
-## 🙏 Agradecimientos
+## 🙏 Acknowledgments
 
-- Google Cardboard por el SDK de VR
-- Unity Technologies por el motor de desarrollo
-- Comunidad de desarrolladores VR
+- Google Cardboard for the VR SDK
+- Unity Technologies for the development engine
+- VR developer community
 
 ---
 
-⭐ ¡No olvides darle una estrella al proyecto si te gusta!
+⭐ Don't forget to give the project a star if you like it!
