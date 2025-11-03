@@ -7,8 +7,15 @@ namespace Gio
     {
         [Header("Movimiento base")]
         public float moveSpeed = 2f;
-        private Transform target;
+        public float stopDistance = 0.2f;
+        [Tooltip("Mantener altura actual al moverse (evita saltos en Y)")]
+        public bool preserveY = true;
+        [Header("Reaparición de triggers")]
+        [Tooltip("Retraso antes de que reaparezca el punto anterior")]
+        public float reappearDelay = 0.75f;
+
         private bool isMoving = false;
+        private Vector3? targetPos = null;
         private GameObject lastTargetObject;
 
         [Header("Destino alternativo (opcional)")]
@@ -18,39 +25,40 @@ namespace Gio
 
         public void MoveTowards(Transform newTarget)
         {
-            // Reactivar el trigger anterior si existe
+            // Reaparecer el punto anterior con retraso (si es distinto)
             if (lastTargetObject != null && lastTargetObject != newTarget.gameObject)
             {
-                lastTargetObject.SetActive(true);
+                StartCoroutine(ReenableAfterDelay(lastTargetObject, reappearDelay));
             }
 
-            target = newTarget;
             lastTargetObject = newTarget.gameObject;
 
-            // 🔥 Desactivar el collider del trigger
-            Collider c = lastTargetObject.GetComponent<Collider>();
-            if (c != null) c.enabled = false;
+            // Desactivar todos los colliders del trigger y su jerarquía
+            SetCollidersEnabled(lastTargetObject, false);
 
-            // 🔥 Ocultar el trigger visualmente
+            // Ocultar el trigger visualmente
             lastTargetObject.SetActive(false);
 
-            // ✅ Si tiene destino alternativo, usamos esa ruta
+            // Definir punto de destino como posición (no referencia a Transform)
             if (useAlternateDestination && alternateDestination != null)
             {
                 if (teleportToAlternate)
                 {
-                    // Teletransportar instantáneamente
-                    transform.position = alternateDestination.position;
-                    Debug.Log("✨ Teletransportado a punto alternativo: " + alternateDestination.name);
+                    Vector3 dest = alternateDestination.position;
+                    if (preserveY) dest.y = transform.position.y;
+                    transform.position = dest;
                     isMoving = false;
+                    targetPos = null;
                     return;
                 }
                 else
                 {
-                    // Movimiento normal hacia el punto alternativo
-                    target = alternateDestination;
-                    Debug.Log("🚶 Moviéndose hacia punto alternativo: " + alternateDestination.name);
+                    targetPos = alternateDestination.position;
                 }
+            }
+            else
+            {
+                targetPos = newTarget.position;
             }
 
             isMoving = true;
@@ -58,20 +66,40 @@ namespace Gio
 
         void Update()
         {
-            if (isMoving && target != null)
-            {
-                transform.position = Vector3.MoveTowards(
-                    transform.position,
-                    target.position,
-                    moveSpeed * Time.deltaTime
-                );
+            if (!isMoving || !targetPos.HasValue) return;
 
-                // cuando llega al punto, deja de moverse
-                if (Vector3.Distance(transform.position, target.position) < 0.1f)
-                {
-                    isMoving = false;
-                }
+            Vector3 dest = targetPos.Value;
+            if (preserveY) dest.y = transform.position.y;
+
+            // Avanzar hacia el punto objetivo
+            transform.position = Vector3.MoveTowards(
+                transform.position,
+                dest,
+                moveSpeed * Time.deltaTime
+            );
+
+            // Al llegar cerca, detener sin "snap" para evitar salto visual
+            if (Vector3.Distance(transform.position, dest) <= stopDistance)
+            {
+                isMoving = false;
+                targetPos = null;
             }
+        }
+
+        private void SetCollidersEnabled(GameObject go, bool enabled)
+        {
+            var cols = go.GetComponentsInChildren<Collider>(true);
+            for (int i = 0; i < cols.Length; i++) cols[i].enabled = enabled;
+        }
+
+        private IEnumerator ReenableAfterDelay(GameObject go, float delay)
+        {
+            yield return new WaitForSeconds(delay);
+            if (go == null) yield break;
+            // No reactivar si ahora mismo es el objetivo actual
+            if (go == lastTargetObject) yield break;
+            SetCollidersEnabled(go, true);
+            go.SetActive(true);
         }
     }
 }
