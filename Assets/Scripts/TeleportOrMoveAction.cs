@@ -15,8 +15,12 @@ namespace Gio {
         {
             if (player == null) return;
 
+            Transform destination = null;
+
             if (useAlternateDestination && alternateDestination != null)
             {
+                destination = alternateDestination;
+                
                 if (teleportInstantly)
                 {
                     player.transform.position = alternateDestination.position;
@@ -30,8 +34,19 @@ namespace Gio {
             }
             else
             {
+                destination = transform;
                 player.MoveTowards(transform);
                 Debug.Log("🚶 Moviéndose hacia este trigger: " + name);
+            }
+
+            // Activar zona de audio si el destino tiene una
+            if (destination != null)
+            {
+                AudioZone audioZone = destination.GetComponent<AudioZone>();
+                if (audioZone != null)
+                {
+                    audioZone.ActivateZone();
+                }
             }
         }
     }
